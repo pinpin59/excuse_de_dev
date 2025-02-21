@@ -12,9 +12,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" >
       <body>
-        <Providers>
+        <Providers>  {/* Provider Hero UI */}
           {children}
         </Providers>
       </body>
