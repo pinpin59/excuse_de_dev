@@ -13,6 +13,8 @@ export default function LostPage() {
     }, []);
 
     return (
-        <div>Lost</div>
+        <div className="flex justify-center items-center min-h-screen bg-gray-900">
+            <img src="/lost.gif" alt="GIF animé" className="w-64 h-64" />
+        </div>
     )
 }
