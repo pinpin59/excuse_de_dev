@@ -14,9 +14,8 @@ export async function GET(req: NextRequest) {
     if (getAllData) {
       // Récupérer toutes les données sans pagination
       const excuses = await prisma.excuse.findMany();
-      return NextResponse.json({
-        data: excuses,
-      }, { status: 200 });
+      return NextResponse.json(excuses, { status: 200 });
+
     } else {
       // Récupérer avec pagination
       const excuses = await prisma.excuse.findMany({
