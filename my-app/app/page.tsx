@@ -1,5 +1,6 @@
 "use client";
 import GenerateExcuseButton from "@/components/GenerateExcuseButton";
+import { Excuse } from "@/types/excuse";
 import { Button } from "@heroui/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -8,6 +9,11 @@ import { useState, useEffect } from "react";
 export default function Home() {
 
   const [showButton, setShowButton] = useState(false);
+  const [currentExcuse, setCurrentExcuse] = useState<Excuse | null>(null); // État pour stocker l'excuse
+
+  const handleNewExcuse = (excuse: Excuse) => {
+    setCurrentExcuse(excuse); // Met à jour l'excuse dans l'état parent
+  };
 
   useEffect(() => {
     // Après 2 secondes, affiche le bouton et fait monter le titre
@@ -39,8 +45,8 @@ export default function Home() {
         </Link>
       </div>
  
-      <p className="text-lg mb-10">Découvrez une expérience incroyable avec HeroUI.</p>
-      <GenerateExcuseButton/>
+      <p className="text-lg mb-10">{currentExcuse ? currentExcuse.message : "Pas d'excuse !"}</p>
+      <GenerateExcuseButton onExcuseGenerated={handleNewExcuse} />
     </div>
   );
 }
