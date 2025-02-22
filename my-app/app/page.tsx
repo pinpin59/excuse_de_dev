@@ -19,7 +19,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen text-center p-4 bg-gradient-to-t from-indigo-900 via-indigo-950 via-100% to-black animate-gradient">
+    <div className="relative flex flex-col items-center justify-center min-h-screen text-center p-4">
 
       {/* Animation du titre */}
       <motion.h1
@@ -28,17 +28,17 @@ export default function Home() {
         transition={{ duration: 1 }}
         className="text-5xl font-bold mb-4"
         >
-        Les excuses de Dev
+        Les excuses de Dev 
       </motion.h1>
       <div className="absolute top-4 right-4 flex gap-4">
-        <Link href="/lost">
+        <Link href="/excuses">
           <Button  radius="none" color="secondary" size="lg">Voir les excuses</Button>
         </Link>
         <Link href="/lost">
           <Button  radius="none" color="secondary" size="lg">Créer une excuse</Button>
         </Link>
       </div>
-
+ 
       <p className="text-lg mb-10">Découvrez une expérience incroyable avec HeroUI.</p>
       <GenerateExcuseButton/>
     </div>
