@@ -13,10 +13,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" >
-      <body>
-        <Providers>  {/* Provider Hero UI */}
-          {children}
-        </Providers>
+      <body className=" min-h-screen bg-gradient-to-t from-indigo-800 via-indigo-950 via-100% to-black animate-gradient">
+        <main>
+          <Providers>  {/* Provider Hero UI */}
+            {children}
+          </Providers>
+        </main>
+       
       </body>
     </html>
   );
