@@ -1,5 +1,6 @@
 "use client";
 import GenerateExcuseButton from "@/components/GenerateExcuseButton";
+import ModalCreateExcuse from "@/components/ModalCreateExcuse";
 import { Excuse } from "@/types/excuse";
 import { Button } from "@heroui/react";
 import { motion } from "framer-motion";
@@ -40,12 +41,10 @@ export default function Home() {
         <Link href="/excuses">
           <Button  radius="none" color="secondary" size="lg">Voir les excuses</Button>
         </Link>
-        <Link href="/lost">
-          <Button  radius="none" color="secondary" size="lg">Créer une excuse</Button>
-        </Link>
+        <ModalCreateExcuse />
       </div>
  
-      <p className="text-lg mb-10">{currentExcuse ? currentExcuse.message : "Pas d'excuse !"}</p>
+      <p className="text-lg mb-10">{currentExcuse ? currentExcuse.message : "Pas d'excuses !"}</p>
       <GenerateExcuseButton onExcuseGenerated={handleNewExcuse} />
     </div>
   );

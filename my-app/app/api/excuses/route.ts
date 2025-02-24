@@ -39,3 +39,20 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Error fetching excuses' + error }, { status: 500 });
   }
 }
+
+export async function POST (req: NextRequest) {
+  try {
+    const { tag, message, http_code } = await req.json();
+    const excuse = await prisma.excuse.create({
+      data: {
+        tag,
+        message,
+        http_code,
+      },
+    });
+
+    return NextResponse.json(excuse, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Error creating excuse' + error }, { status: 500 });
+  }
+}
