@@ -1,5 +1,5 @@
 "use client";
-import Footer from "@/components/Footer";
+import AlertComponent from "@/components/Alert";
 import GenerateExcuseButton from "@/components/GenerateExcuseButton";
 import ModalCreateExcuse from "@/components/ModalCreateExcuse";
 import { Excuse } from "@/types/excuse";
@@ -12,9 +12,17 @@ export default function Home() {
 
   const [showButton, setShowButton] = useState(false);
   const [currentExcuse, setCurrentExcuse] = useState<Excuse | null>(null); // État pour stocker l'excuse
+  const [alert, setAlert] = useState(false);
 
+  // Callback 
   const handleNewExcuse = (excuse: Excuse) => {
     setCurrentExcuse(excuse); // Met à jour l'excuse dans l'état parent
+  };
+
+  //Callback
+  const handleSuccessAlert = () => {
+    setAlert(true);
+    setTimeout(() => setAlert(false), 5000); // Cache l'alerte après 3s
   };
 
   useEffect(() => {
@@ -42,14 +50,18 @@ export default function Home() {
         <Link href="/excuses">
           <Button  radius="none" color="secondary" size="lg">Voir les excuses</Button>
         </Link>
-        <ModalCreateExcuse />
+        <ModalCreateExcuse onSuccess={handleSuccessAlert}  />
       </div>
  
       <p className="text-lg mb-10">{currentExcuse ? currentExcuse.message : "Pas d'excuses !"}</p>
-      <GenerateExcuseButton onExcuseGenerated={handleNewExcuse} />
-      <section className="absolute bottom-0 left-0 w-full">
-        <Footer />
-      </section>
+      <motion.div
+        initial={{ opacity: 0, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 3, delay: 2 }}
+      >
+        <GenerateExcuseButton onExcuseGenerated={handleNewExcuse} />
+      </motion.div>
+      {alert && <AlertComponent className="absolute bottom-4 right-4" color="success" message="Excuse ajoutée avec succès !" />}
     </div>
   );
 }

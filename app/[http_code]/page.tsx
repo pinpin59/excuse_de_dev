@@ -1,6 +1,6 @@
 "use client";
 
-import AlertError from "@/components/AlertError";
+import AlertComponent from "@/components/Alert";
 import ExcuseCard from "@/components/ExcuseCard";
 import HomeButton from "@/components/HomeButton";
 import Loader from "@/components/Spinner";
@@ -47,7 +47,7 @@ export default function Page({ params }: { params: Promise<{ http_code: string }
   }, [resolvedParams.http_code, router]); // Déclenche le fetch quand resolvedParams.http_code change
 
     if (loading) return <div className="min-h-screen flex flex-col items-center justify-center"><Loader /></div>;
-    if (error) return <AlertError error={error}/>;
+    if (error) return <AlertComponent className="h-screen" color="danger" message={error}/>;
   
     return (
         <div className="relative min-h-screen flex flex-col items-center justify-center">
