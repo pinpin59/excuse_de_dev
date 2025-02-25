@@ -66,10 +66,10 @@ export default function Home() {
       <AnimatePresence>
       {alert && (
         <motion.div
-          key="alert" // Important pour identifier l'élément
+          key="alert"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }} // Animation quand l'alerte disparaît
+          exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.5 }}
           className="absolute bottom-4 right-4"
         >
