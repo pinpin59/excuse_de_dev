@@ -10,7 +10,7 @@ import {
   Form,
 } from "@heroui/react";
 
-export default function ModalCreateExcuse() {
+export default function ModalCreateExcuse({ onSuccess }: { onSuccess: () => void }) {
   const {isOpen, onOpen, onClose} = useDisclosure();
   const [size, setSize] = useState<"xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "full">("md");
   const [formState, setFormState] = useState({ http_code: "", tag: "", message: "" });
@@ -27,6 +27,8 @@ export default function ModalCreateExcuse() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("🟢 onSuccess reçu dans ModalCreateExcuse :", onSuccess);
+
     try {
       // Convertir le code HTTP en type number pour l'api
       const payload = {
@@ -46,9 +48,7 @@ export default function ModalCreateExcuse() {
         throw new Error("Erreur lors de l'envoi des données" + response.statusText +  response.status);
       }
 
-      const data = await response.json();
-      console.log("Réponse API :", data);
-
+      if (onSuccess) onSuccess();
       // Réinitialiser le formulaire après succès
       setFormState({ http_code: "", tag: "", message: "" });
       onClose(); // Fermer le modal
@@ -65,7 +65,7 @@ export default function ModalCreateExcuse() {
                 Créer une excuse
           </Button>
       </div>
-      <Modal isOpen={isOpen} size={size} onClose={onClose}
+      <Modal isOpen={isOpen} size={size}  placement="center" onClose={onClose}
       backdrop="opaque"
       classNames={{
         body: "py-6",
@@ -80,46 +80,50 @@ export default function ModalCreateExcuse() {
             <>
               <ModalHeader className="flex flex-col gap-1">Créer une excuse</ModalHeader>
               <ModalBody>
-                <Form className="w-full max-w-xs" onSubmit={handleSubmit}>
+                <Form className="w-full mx-auto max-w-xs" onSubmit={handleSubmit}>
                     <Input
                         isRequired
-                        errorMessage="Please enter HTTPCODE VALID"
+                        errorMessage="Entrez un code HTTP valide"
                         label="Http Code"
                         labelPlacement="outside"
                         name="http_code"
-                        placeholder="Enter your http_code"
+                        placeholder="Entrez le code HTTP"
                         type="number"
                         value={formState.http_code}
                         onChange={handleChange}
                     />
                     <Input
                         isRequired
-                        errorMessage="Please enter a valid tag"
-                        label="tag"
+                        className="pt-3"
+                        errorMessage="Entrez un tag valide"
+                        label="Tag"
                         labelPlacement="outside"
                         name="tag"
-                        placeholder="Enter your tag"
+                        placeholder="Entrez le tag"
                         type="text"
                         value={formState.tag}
                         onChange={handleChange}
                     />
                     <Input
                         isRequired
-                        errorMessage="Please enter a valid excuse"
-                        label="message"
+                        className="pt-3"
+                        errorMessage="Entrez un message valide"
+                        label="Excuse"
                         labelPlacement="outside"
                         name="message"
-                        placeholder="Enter your excuse"
+                        placeholder="Entrez votre excuse"
                         type="text"
                         value={formState.message}
                         onChange={handleChange}
                     />
-                    <Button color="danger" variant="light" onPress={onClose}>
-                        Close
-                    </Button>
-                    <Button type="submit" variant="bordered">
-                        Submit
-                    </Button>
+                    <div className="flex justify-between align-middle w-full mt-4">
+                      <Button color="danger" variant="light" onPress={onClose}>
+                          Fermer
+                      </Button>
+                      <Button color="success" type="submit" variant="flat">
+                          Créer
+                      </Button>
+                    </div>
                 </Form>
               </ModalBody>
             </>
