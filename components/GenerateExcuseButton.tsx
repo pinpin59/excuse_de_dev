@@ -10,9 +10,10 @@ export default function GenerateExcuseButton({ onExcuseGenerated }: GenerateExcu
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [excuses, setExcuses] = useState<Excuse[]>([]);
     const [usedExcuses, setUsedExcuses] = useState<Excuse[]>([]);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/excuses?all=true')
+        fetch(`${API_URL}/api/excuses?all=true`)
           .then(response => response.json())
           .then(data => {
             setExcuses(data);

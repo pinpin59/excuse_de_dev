@@ -25,9 +25,9 @@ type Excuse = {
 export default function App() {
   
   const [page, setPage] = React.useState(1);
-
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { data, error, isLoading } = useSWR(
-    `http://localhost:3000/api/excuses?page=${page}`, 
+    `${API_URL}/api/excuses?page=${page}`, 
     fetcher, 
     { keepPreviousData: true }
   );

@@ -9,36 +9,38 @@ import { useRouter } from "next/navigation";
 import { use, useState, useEffect } from "react";
 
 export default function Page({ params }: { params: Promise<{ http_code: string }> }) {
-  const resolvedParams = use(params); 
-  const [data, setData] = useState<Excuse[] | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+    const resolvedParams = use(params); 
+    const [data, setData] = useState<Excuse[] | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const router = useRouter();
-  useEffect(() => {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+
+    useEffect(() => {
     if (!resolvedParams.http_code) return; 
-
     const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(`http://localhost:3000/api/excuse-by-code/${resolvedParams.http_code}`);
-        if (!response.ok) throw new Error("Erreur lors de la récupération des données");
+        try {
+            setLoading(true);
+            const response = await fetch(`${API_URL}/api/excuse-by-code/${resolvedParams.http_code}`);
+            if (!response.ok) throw new Error("Erreur lors de la récupération des données");
 
-        const result = await response.json();
-        setData(result);
-        
-      } catch (error) {
-        if (error instanceof Error) {
-          setError(error.message);
-          const timer = setTimeout(() => {
-            router.push("/");
-            }, 3000);
-            return () => clearTimeout(timer);
-        } else {
-          setError("Une erreur inconnue est survenue");
+            const result = await response.json();
+            setData(result);
+            
+        } catch (error) {
+            if (error instanceof Error) {
+            setError(error.message);
+            const timer = setTimeout(() => {
+                router.push("/");
+                }, 3000);
+                return () => clearTimeout(timer);
+            } else {
+            setError("Une erreur inconnue est survenue");
+            }
+        } finally {
+            setLoading(false);
         }
-      } finally {
-        setLoading(false);
-      }
     };
 
     fetchData();

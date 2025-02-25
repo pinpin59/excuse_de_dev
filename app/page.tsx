@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/components/Footer";
 import GenerateExcuseButton from "@/components/GenerateExcuseButton";
 import ModalCreateExcuse from "@/components/ModalCreateExcuse";
 import { Excuse } from "@/types/excuse";
@@ -46,6 +47,9 @@ export default function Home() {
  
       <p className="text-lg mb-10">{currentExcuse ? currentExcuse.message : "Pas d'excuses !"}</p>
       <GenerateExcuseButton onExcuseGenerated={handleNewExcuse} />
+      <section className="absolute bottom-0 left-0 w-full">
+        <Footer />
+      </section>
     </div>
   );
 }
