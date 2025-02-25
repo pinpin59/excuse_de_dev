@@ -12,14 +12,11 @@ async function main() {
     
     // Parser les données JSON
     const excusesData = JSON.parse(rawData);
-    console.log(excusesData);
     
     // Ajouter les excuses dans la base de données
     await prisma.excuse.createMany({
         data: excusesData,
     });
-
-    console.log('Toutes les excuses ont été ajoutées!');
 }
 
 main()
