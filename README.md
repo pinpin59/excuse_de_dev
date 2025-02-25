@@ -15,20 +15,22 @@ Avant de commencer, assurez-vous d'avoir installé :
 
 ### 1️⃣ Cloner le projet
 ```sh
-git clone https://github.com/mon-utilisateur/mon-projet.git
-cd mon-projet
+git clone https://github.com/pinpin59/excuse_de_dev.git
+cd excuse_de_dev
 ```
 
 ### 2️⃣ Installation des dépendances
-Avec Yarn :
-```sh
-yarn install
-```
 
-Ou avec npm :
+Avec npm :
 ```sh
 npm install
 ```
+
+Si vous rencontrez des problèmes de dépendances, essayez avec l'option legacy peer dependencies :
+```sh
+npm install --legacy-peer-deps
+```
+
 
 ## 🛠 Configuration des variables d'environnement
 
@@ -64,12 +66,6 @@ npx prisma studio
 ### 6️⃣ Démarrer le serveur backend
 ```sh
 npm run dev
-```
-
-ou avec Yarn :
-
-```sh
-yarn dev
 ```
 
 📌 Par défaut, l'API tourne sur http://localhost:3000.
