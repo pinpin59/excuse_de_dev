@@ -4,7 +4,7 @@ import GenerateExcuseButton from "@/components/GenerateExcuseButton";
 import ModalCreateExcuse from "@/components/ModalCreateExcuse";
 import { Excuse } from "@/types/excuse";
 import { Button } from "@heroui/react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -61,7 +61,22 @@ export default function Home() {
       >
         <GenerateExcuseButton onExcuseGenerated={handleNewExcuse} />
       </motion.div>
-      {alert && <AlertComponent className="absolute bottom-4 right-4" color="success" message="Excuse ajoutée avec succès !" />}
+
+      {/* Alert */}
+      <AnimatePresence>
+      {alert && (
+        <motion.div
+          key="alert" // Important pour identifier l'élément
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }} // Animation quand l'alerte disparaît
+          transition={{ duration: 0.5 }}
+          className="absolute bottom-4 right-4"
+        >
+          <AlertComponent color="success" message="Excuse ajoutée avec succès !" />
+        </motion.div>
+      )}
+      </AnimatePresence>
     </div>
   );
 }
