@@ -27,7 +27,6 @@ export default function ModalCreateExcuse({ onSuccess }: { onSuccess: () => void
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("🟢 onSuccess reçu dans ModalCreateExcuse :", onSuccess);
 
     try {
       // Convertir le code HTTP en type number pour l'api
@@ -35,7 +34,6 @@ export default function ModalCreateExcuse({ onSuccess }: { onSuccess: () => void
         ...formState,
         http_code: Number(formState.http_code),
       };
-      console.log(payload);
       const response = await fetch(`${API_URL}/api/excuses`, {
         method: "POST",
         headers: {

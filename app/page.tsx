@@ -1,5 +1,6 @@
 "use client";
 import AlertComponent from "@/components/Alert";
+import BreadcrumbComponent from "@/components/Breadcrumb";
 import GenerateExcuseButton from "@/components/GenerateExcuseButton";
 import ModalCreateExcuse from "@/components/ModalCreateExcuse";
 import { Excuse } from "@/types/excuse";
@@ -46,6 +47,9 @@ export default function Home() {
         >
         Les excuses de Dev 
       </motion.h1>
+      <div className="absolute top-4 left-4 flex gap-4">
+        <BreadcrumbComponent />
+      </div>
       <div className="absolute top-4 right-4 flex gap-4">
         <Link href="/excuses">
           <Button  radius="none" color="secondary" size="lg">Voir les excuses</Button>
