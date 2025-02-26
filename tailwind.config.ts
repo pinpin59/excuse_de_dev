@@ -10,6 +10,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        delius: "var(--font-delius)",
+        funnelDisplay: "var(--font-funnel-display)"
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

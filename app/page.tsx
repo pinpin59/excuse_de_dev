@@ -57,7 +57,7 @@ export default function Home() {
         <ModalCreateExcuse onSuccess={handleSuccessAlert}  />
       </div>
  
-      <p className="text-lg mb-10">{currentExcuse ? currentExcuse.message : "Pas d'excuses !"}</p>
+      <p className="text-lg font-delius mb-10">{currentExcuse ? currentExcuse.message : "Pas d'excuses !"}</p>
       <motion.div
         initial={{ opacity: 0, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
