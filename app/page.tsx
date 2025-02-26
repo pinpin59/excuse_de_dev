@@ -38,6 +38,17 @@ export default function Home() {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen text-center p-4">
 
+      <nav className="absolute top-4 gap-4 flex align-center justify-between w-full px-5" aria-label="Navigation principale">
+        <div>
+          <BreadcrumbComponent />
+        </div>
+        <div className="flex">
+          <Link className="mr-4" href="/excuses">
+            <Button  radius="none" color="secondary" size="lg">Voir les excuses</Button>
+          </Link>
+          <ModalCreateExcuse onSuccess={handleSuccessAlert}  />
+        </div>
+      </nav>
       {/* Animation du titre */}
       <motion.h1
         initial={{ opacity: 0, y: 0 }}
@@ -47,15 +58,6 @@ export default function Home() {
         >
         Les excuses de Dev 
       </motion.h1>
-      <div className="absolute top-4 left-4 flex gap-4">
-        <BreadcrumbComponent />
-      </div>
-      <div className="absolute top-4 right-4 flex gap-4">
-        <Link href="/excuses">
-          <Button  radius="none" color="secondary" size="lg">Voir les excuses</Button>
-        </Link>
-        <ModalCreateExcuse onSuccess={handleSuccessAlert}  />
-      </div>
  
       <p className="text-lg font-delius mb-10">{currentExcuse ? currentExcuse.message : "Pas d'excuses !"}</p>
       <motion.div
