@@ -30,7 +30,7 @@ export default function BreadcrumbComponent() {
         <Link href="/not/found">404 Page</Link>
       </BreadcrumbItem>
       <BreadcrumbItem key="excuses" isCurrent={currentPage === "not-found"}>
-        <Link href="/excuses">Chercher via url</Link>
+        <Link href="/738">Chercher via url</Link>
       </BreadcrumbItem>
     </Breadcrumbs>
   );
