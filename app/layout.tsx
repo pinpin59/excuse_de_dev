@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" >
-      <body className=" min-h-screen bg-gradient-to-t from-indigo-800 via-indigo-950 via-100% to-black animate-gradient">
+      <body className=" min-h-screen bg-gradient-to-t from-indigo-700 via-indigo-900 via-100% to-indigo-700 animate-gradient">
         <main>
           <Providers>  {/* Provider Hero UI */}
             {children}

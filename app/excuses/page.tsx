@@ -31,7 +31,6 @@ export default function App() {
     fetcher, 
     { keepPreviousData: true }
   );
-  console.log(data);
   
   const excuses: Excuse[] = data?.data || [];
   const totalPages = data?.pagination?.totalPages || 0;

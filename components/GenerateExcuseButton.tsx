@@ -17,7 +17,6 @@ export default function GenerateExcuseButton({ onExcuseGenerated }: GenerateExcu
           .then(response => response.json())
           .then(data => {
             setExcuses(data);
-            console.log(data)
           })
           .catch(error => console.error('Error fetching excuses:', error));
     }, []);
