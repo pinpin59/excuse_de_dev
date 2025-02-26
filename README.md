@@ -55,17 +55,18 @@ npx prisma generate
 ```sh
 npx prisma migrate dev --name init
 ```
-
-### 5️⃣ Démarrer Prisma Studio (interface de gestion des données)
-```sh
-npx prisma studio
-```
-
 ## 🚀 Lancer le projet
 
-### 6️⃣ Démarrer le serveur backend
+### 5️⃣ Démarrer le projet
 ```sh
 npm run dev
 ```
 
 📌 Par défaut, l'API tourne sur http://localhost:3000.
+
+## 🔧 Optionnel
+
+### Démarrer Prisma Studio pour visualiser les données
+```sh
+npx prisma studio
+```
