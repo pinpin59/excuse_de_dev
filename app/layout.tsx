@@ -21,9 +21,6 @@ const funnel_display = Funnel_Display({
   weight: '400',
 });
 
-
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
